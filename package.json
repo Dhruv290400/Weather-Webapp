@@ -1,0 +1,49 @@
+{
+  "name": "indian-weather-app",
+  "version": "1.0.0",
+  "description": "A modern, responsive weather application for Indian cities with real-time weather updates, forecasts, air quality monitoring, and climate news",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "dev": "live-server --host=localhost --port=3000",
+    "build": "echo 'No build process required for static site'",
+    "test": "echo 'No tests specified'",
+    "deploy": "netlify deploy --prod --dir=."
+  },
+  "keywords": [
+    "weather",
+    "india",
+    "forecast",
+    "climate",
+    "air-quality",
+    "aqi",
+    "responsive",
+    "javascript",
+    "html5",
+    "css3"
+  ],
+  "author": {
+    "name": "Dhruv Singh",
+    "email": "your.email@example.com",
+    "url": "https://github.com/your-username"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/indian-weather-app.git"
+  },
+  "homepage": "https://your-username.github.io/indian-weather-app",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

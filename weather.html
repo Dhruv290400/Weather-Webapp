@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <!-- SEO Meta Tags -->
+  <title>Weather Overview - Indian Weather App</title>
+  <meta name="description" content="Detailed weather overview for Indian cities with comprehensive data and air quality information.">
+  <meta name="keywords" content="weather overview, India, detailed weather, comprehensive forecast">
+  <meta name="author" content="Dhruv Singh">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.ico">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- JavaScript -->
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <!-- Weather Animations -->
+  <div class="weather-animations" aria-hidden="true">
+    <div class="rain"></div>
+    <div class="wind"></div>
+    <div class="sunshine"></div>
+    <div class="cloudy"></div>
+  </div>
+
+  <main class="overview-app">
+    <!-- Header -->
+    <header class="overview-header">
+      <div class="header-container">
+        <div class="header-nav">
+          <a href="index.html" class="back-link">
+            <span class="back-icon">←</span>
+            <span class="back-text">Back to Home</span>
+          </a>
+          <div class="logo">
+            <span class="logo-icon">🌦️</span>
+            <span class="logo-text">Weather Overview</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="refresh-btn" onclick="loadDefaultWeather()" aria-label="Refresh data">
+            <span class="refresh-icon">🔄</span>
+            <span class="refresh-text">Refresh</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="overview-hero">
+      <div class="hero-container">
+        <h1 class="overview-title">
+          Comprehensive Weather Overview
+        </h1>
+        <p class="overview-subtitle">
+          Real-time weather data, forecasts, air quality monitoring, and climate insights for Indian cities
+        </p>
+        
+        <!-- Quick Search -->
+        <div class="quick-search">
+          <div class="search-input-group">
+            <span class="search-icon">🔍</span>
+            <input 
+              type="text" 
+              id="overviewCityInput" 
+              placeholder="Search any Indian city for detailed overview..."
+              list="overviewCityList"
+            />
+            <button class="search-btn" onclick="getOverviewWeather()">
+              <span>Search</span>
+            </button>
+          </div>
+          <datalist id="overviewCityList">
+            <option value="Delhi">New Delhi - National Capital</option>
+            <option value="Mumbai">Mumbai - Financial Capital</option>
+            <option value="Bangalore">Bangalore - Silicon Valley of India</option>
+            <option value="Chennai">Chennai - Detroit of India</option>
+            <option value="Kolkata">Kolkata - Cultural Capital</option>
+            <option value="Hyderabad">Hyderabad - Cyberabad</option>
+            <option value="Pune">Pune - Oxford of the East</option>
+            <option value="Ahmedabad">Ahmedabad - Manchester of India</option>
+          </datalist>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="overview-content">
+      <div class="content-container">
+        
+        <!-- Current Weather Dashboard -->
+        <div class="weather-dashboard">
+          <div class="dashboard-grid">
+            
+            <!-- Main Weather Card -->
+            <div class="main-weather-card">
+              <div class="weather-card-header">
+                <h2>🌡️ Current Weather</h2>
+                <span class="live-indicator">
+                  <span class="live-dot"></span>
+                  Live Data
+                </span>
+              </div>
+              <div id="weatherResult" class="weather-content">
+                <div class="default-weather-display">
+                  <div class="weather-placeholder">
+                    <div class="placeholder-icon">🎆</div>
+                    <h3>Welcome to Weather Overview</h3>
+                    <p>Search for any Indian city above to view comprehensive weather data</p>
+                    <div class="suggestion-cities">
+                      <span>Try popular cities:</span>
+                      <div class="suggestion-buttons">
+                        <button onclick="searchOverviewCity('Delhi')">Delhi</button>
+                        <button onclick="searchOverviewCity('Mumbai')">Mumbai</button>
+                        <button onclick="searchOverviewCity('Bangalore')">Bangalore</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Air Quality Card -->
+            <div class="air-quality-card">
+              <div class="card-header">
+                <h3>🌫️ Air Quality Index</h3>
+              </div>
+              <div id="aqiResult" class="aqi-content">
+                <div class="aqi-placeholder">
+                  <div class="aqi-icon">🍃</div>
+                  <p>Air quality data will appear here after searching for a city</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Weather Stats Card -->
+            <div class="weather-stats-card">
+              <div class="card-header">
+                <h3>📊 Weather Statistics</h3>
+              </div>
+              <div id="weatherStats" class="stats-content">
+                <div class="stats-placeholder">
+                  <div class="stat-item">
+                    <span class="stat-icon">🌡️</span>
+                    <span class="stat-label">Temperature</span>
+                    <span class="stat-value">--°C</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-icon">💧</span>
+                    <span class="stat-label">Humidity</span>
+                    <span class="stat-value">--%</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-icon">🌬️</span>
+                    <span class="stat-label">Wind Speed</span>
+                    <span class="stat-value">-- m/s</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-icon">☁️</span>
+                    <span class="stat-label">Cloudiness</span>
+                    <span class="stat-value">--%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Forecast Section -->
+        <div class="forecast-section">
+          <div class="section-header">
+            <h2>🕰️ Weather Forecast</h2>
+            <span class="forecast-period">Next 24 Hours</span>
+          </div>
+          <div id="forecastResult" class="forecast-content">
+            <div class="forecast-placeholder">
+              <div class="forecast-placeholder-icon">📅</div>
+              <p>Detailed hourly forecast will be displayed here</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- News & Insights Section -->
+        <div class="news-insights-section">
+          <div class="section-layout">
+            
+            <!-- News Column -->
+            <div class="news-column">
+              <div class="section-header">
+                <h2>📰 Weather News</h2>
+                <span class="news-source">Latest Updates</span>
+              </div>
+              <div id="newsResult" class="news-content">
+                <div class="news-placeholder">
+                  <div class="news-placeholder-icon">📰</div>
+                  <p>Latest weather and climate news will appear here</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Weather Insights Column -->
+            <div class="insights-column">
+              <div class="section-header">
+                <h2>💡 Weather Insights</h2>
+              </div>
+              <div class="insights-content">
+                <div class="insight-card">
+                  <div class="insight-icon">☀️</div>
+                  <div class="insight-info">
+                    <h4>Best Time for Outdoor Activities</h4>
+                    <p>Early morning (6-9 AM) and evening (5-7 PM) are ideal for outdoor activities in most Indian cities.</p>
+                  </div>
+                </div>
+                
+                <div class="insight-card">
+                  <div class="insight-icon">🌧️</div>
+                  <div class="insight-info">
+                    <h4>Monsoon Season</h4>
+                    <p>June to September brings heavy rainfall. Always check weather forecasts before traveling.</p>
+                  </div>
+                </div>
+                
+                <div class="insight-card">
+                  <div class="insight-icon">😷</div>
+                  <div class="insight-info">
+                    <h4>Air Quality Alert</h4>
+                    <p>When AQI exceeds 100, consider wearing masks and limiting outdoor exposure.</p>
+                  </div>
+                </div>
+                
+                <div class="insight-card">
+                  <div class="insight-icon">🌡️</div>
+                  <div class="insight-info">
+                    <h4>Temperature Trends</h4>
+                    <p>Summer temperatures can reach 45°C. Stay hydrated and avoid direct sunlight during peak hours.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="overview-footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>🌦️ WeatherIndia</h4>
+            <p>Comprehensive weather monitoring for Indian cities</p>
+          </div>
+          <div class="footer-section">
+            <h4>Features</h4>
+            <ul>
+              <li>Real-time weather data</li>
+              <li>Air quality monitoring</li>
+              <li>24-hour forecasts</li>
+              <li>Climate news updates</li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Data Sources</h4>
+            <ul>
+              <li>OpenWeatherMap API</li>
+              <li>NewsAPI</li>
+              <li>Indian Meteorological Dept</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 Indian Weather App | Made with ❤️ for India</p>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+</body>
+</html>

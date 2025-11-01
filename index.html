@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <!-- SEO Meta Tags -->
+  <title>Indian Weather App - Real-time Weather & AQI Updates</title>
+  <meta name="description" content="Get real-time weather updates, forecasts, air quality information, and climate news for Indian cities. Beautiful, responsive weather app with interactive animations.">
+  <meta name="keywords" content="weather, India, AQI, air quality, forecast, climate, news, real-time, Indian cities">
+  <meta name="author" content="Dhruv Singh">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Indian Weather App - Real-time Weather & AQI Updates">
+  <meta property="og:description" content="Beautiful weather app for Indian cities with real-time data, forecasts, and air quality monitoring.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://your-domain.com">
+  <meta property="og:image" content="./assets/images/banner.png">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Indian Weather App">
+  <meta name="twitter:description" content="Real-time weather updates for Indian cities">
+  <meta name="twitter:image" content="./assets/images/banner.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- JavaScript -->
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <!-- Professional Loading Screen -->
+  <div id="appLoader" class="app-loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <span class="loader-icon">🌦️</span>
+        <h1 class="loader-title">WeatherIndia</h1>
+      </div>
+      <div class="loader-animation">
+        <div class="weather-orbit">
+          <div class="orbit-item sun">☀️</div>
+          <div class="orbit-item cloud">☁️</div>
+          <div class="orbit-item rain">🌧️</div>
+          <div class="orbit-item wind">💨</div>
+        </div>
+      </div>
+      <div class="loader-text">
+        <p class="loading-message">Loading Weather Data...</p>
+        <div class="loading-progress">
+          <div class="progress-bar"></div>
+        </div>
+      </div>
+      <div class="loader-stats">
+        <div class="stat-loading">🌍 Connecting to APIs...</div>
+        <div class="stat-loading">📡 Fetching Real-time Data...</div>
+        <div class="stat-loading">🎨 Initializing Interface...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Weather Animations -->
+  <div class="weather-animations" aria-hidden="true">
+    <div class="rain"></div>
+    <div class="wind"></div>
+    <div class="sunshine"></div>
+    <div class="cloudy"></div>
+    <div class="snow"></div>
+    <div class="thunderstorm"></div>
+  </div>
+
+  <!-- Main App Container -->
+  <main class="app-container">
+    <!-- Landing Page -->
+    <section class="landing" id="landingPage" role="banner">
+      <!-- Navigation Bar -->
+      <nav class="landing-nav">
+        <div class="nav-container">
+          <div class="logo">
+            <span class="logo-icon">🌦️</span>
+            <span class="logo-text">WeatherIndia</span>
+          </div>
+          <div class="nav-links">
+            <a href="#features" class="nav-link">Features</a>
+            <a href="weather.html" class="nav-link">Overview</a>
+            <button class="nav-btn" onclick="showMainPage()">Get Started</button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero Section -->
+      <header class="hero-section">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-icon">🇮🇳</span>
+            <span class="badge-text">Made for India</span>
+          </div>
+          <h1 class="main-title">
+            <span class="title-highlight">Real-time Weather</span><br>
+            for Indian Cities
+          </h1>
+          <p class="hero-description">
+            Get comprehensive weather data, air quality information, forecasts, and climate news 
+            for over 600+ Indian cities with beautiful, interactive animations.
+          </p>
+          
+          <!-- Quick Stats -->
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-number">600+</div>
+              <div class="stat-label">Cities</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">Real-time</div>
+              <div class="stat-label">Data</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">AQI</div>
+              <div class="stat-label">Monitoring</div>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="cta-section">
+            <button class="primary-btn" onclick="showMainPage()" aria-label="Start using weather app">
+              <span class="btn-icon">🚀</span>
+              Start Exploring
+            </button>
+            
+            <button class="secondary-btn" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})" aria-label="Learn more about features">
+              <span class="btn-icon">📋</span>
+              Learn More
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero Visual -->
+        <div class="hero-visual">
+          <div class="weather-preview-card">
+            <div class="preview-header">
+              <span class="preview-location">🏙️ New Delhi</span>
+              <span class="preview-time">Live</span>
+            </div>
+            <div class="preview-main">
+              <div class="preview-temp">28°C</div>
+              <div class="preview-condition">
+                <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="Weather" class="preview-icon">
+                <span>Partly Cloudy</span>
+              </div>
+            </div>
+            <div class="preview-details">
+              <div class="preview-detail">
+                <span class="detail-label">💧 Humidity</span>
+                <span class="detail-value">65%</span>
+              </div>
+              <div class="preview-detail">
+                <span class="detail-label">🌬️ Wind</span>
+                <span class="detail-value">12 km/h</span>
+              </div>
+              <div class="preview-detail">
+                <span class="detail-label">🌫️ AQI</span>
+                <span class="detail-value aqi-moderate">Moderate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Features Section -->
+      <section id="features" class="features-section">
+        <div class="container">
+          <h2 class="section-title">Why Choose WeatherIndia?</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">🌡️</div>
+              <h3 class="feature-title">Real-time Data</h3>
+              <p class="feature-description">Get accurate, up-to-date weather information powered by OpenWeatherMap API</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🌫️</div>
+              <h3 class="feature-title">Air Quality</h3>
+              <p class="feature-description">Monitor AQI levels with PM2.5 and PM10 data for health-conscious decisions</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">📱</div>
+              <h3 class="feature-title">Responsive Design</h3>
+              <p class="feature-description">Perfect experience on all devices - mobile, tablet, and desktop</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🎭</div>
+              <h3 class="feature-title">Interactive Animations</h3>
+              <p class="feature-description">Beautiful weather animations that respond to current conditions</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">📰</div>
+              <h3 class="feature-title">Climate News</h3>
+              <p class="feature-description">Stay updated with latest weather and climate news from India</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3 class="feature-title">Fast & Reliable</h3>
+              <p class="feature-description">Quick loading times with reliable data from trusted sources</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Main Application Page -->
+    <section class="main" id="mainPage" style="display: none;" role="main">
+      <!-- App Header -->
+      <header class="app-header">
+        <div class="header-container">
+          <div class="app-logo">
+            <button class="back-btn" onclick="showLandingPage()" aria-label="Back to home">
+              <span class="back-icon">←</span>
+            </button>
+            <span class="logo-icon">🌦️</span>
+            <span class="logo-text">WeatherIndia</span>
+          </div>
+          <div class="header-actions">
+            <a href="weather.html" class="header-link">Overview</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Search Section -->
+      <section class="search-section">
+        <div class="search-wrapper">
+          <div class="search-header">
+            <h1 class="search-title">Discover Weather in India</h1>
+            <p class="search-subtitle">Enter any Indian city name to get comprehensive weather information</p>
+          </div>
+          
+          <div class="search-container" role="search">
+            <div class="search-input-wrapper">
+              <label for="cityInput" class="visually-hidden">Enter Indian city name</label>
+              <div class="input-container">
+                <span class="input-icon">🔍</span>
+                <input 
+                  type="text" 
+                  id="cityInput" 
+                  name="cityInput"
+                  placeholder="Search Indian cities (Delhi, Mumbai, Kolkata...)" 
+                  aria-label="City search input"
+                  autocomplete="off"
+                  list="cityList"
+                />
+                <button 
+                  class="search-btn" 
+                  onclick="getWeather()" 
+                  aria-label="Search weather for entered city"
+                >
+                  <span class="btn-text">Get Weather</span>
+                  <span class="btn-icon">➡️</span>
+                </button>
+              </div>
+              <datalist id="cityList">
+                <option value="Delhi">New Delhi</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Pune">Pune</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Jaipur">Jaipur</option>
+                <option value="Lucknow">Lucknow</option>
+              </datalist>
+            </div>
+          </div>
+
+          <!-- Quick City Selection -->
+          <div class="quick-cities">
+            <span class="quick-cities-label">Popular cities:</span>
+            <div class="city-buttons">
+              <button class="city-btn" onclick="searchCity('Delhi')">Delhi</button>
+              <button class="city-btn" onclick="searchCity('Mumbai')">Mumbai</button>
+              <button class="city-btn" onclick="searchCity('Bangalore')">Bangalore</button>
+              <button class="city-btn" onclick="searchCity('Chennai')">Chennai</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Content Section -->
+      <section class="content-section">
+        <div class="content-container">
+          <!-- Weather Dashboard -->
+          <div class="dashboard-wrapper">
+            <div class="main-content">
+            <!-- Weather Card -->
+            <div class="weather-card-container">
+              <div id="weatherResult" role="region" aria-live="polite" aria-label="Current weather data"></div>
+            </div>
+            
+            <!-- Advanced Weather Details -->
+            <div class="advanced-weather-container">
+              <div class="weather-details-grid">
+                <div class="detail-card sun-times">
+                  <div class="card-header">
+                    <h3>🌅 Sun & Moon</h3>
+                  </div>
+                  <div id="sunMoonData" class="card-content">
+                    <div class="sun-moon-placeholder">
+                      <p>Sunrise & sunset times will appear here</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="detail-card uv-index">
+                  <div class="card-header">
+                    <h3>☀️ UV Index</h3>
+                  </div>
+                  <div id="uvIndexData" class="card-content">
+                    <div class="uv-placeholder">
+                      <p>UV index data will appear here</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="detail-card visibility">
+                  <div class="card-header">
+                    <h3>👁️ Visibility</h3>
+                  </div>
+                  <div id="visibilityData" class="card-content">
+                    <div class="visibility-placeholder">
+                      <p>Visibility data will appear here</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="detail-card weather-alerts">
+                  <div class="card-header">
+                    <h3>⚠️ Weather Alerts</h3>
+                  </div>
+                  <div id="weatherAlerts" class="card-content">
+                    <div class="alerts-placeholder">
+                      <p>Weather alerts will appear here</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Forecast Card -->
+            <div class="forecast-card-container">
+              <div id="forecastResult" role="region" aria-live="polite" aria-label="Weather forecast data"></div>
+            </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="sidebar-content">
+              
+              <!-- Quick Weather Comparison -->
+              <div class="comparison-card">
+                <div class="card-header">
+                  <h3>🎆 Quick Compare</h3>
+                </div>
+                <div class="comparison-cities">
+                  <div class="quick-compare-item" onclick="quickCompareCity('Delhi')">
+                    <span class="city-name">Delhi</span>
+                    <span class="quick-temp" id="delhiQuickTemp">--°C</span>
+                  </div>
+                  <div class="quick-compare-item" onclick="quickCompareCity('Mumbai')">
+                    <span class="city-name">Mumbai</span>
+                    <span class="quick-temp" id="mumbaiQuickTemp">--°C</span>
+                  </div>
+                  <div class="quick-compare-item" onclick="quickCompareCity('Bangalore')">
+                    <span class="city-name">Bangalore</span>
+                    <span class="quick-temp" id="bangaloreQuickTemp">--°C</span>
+                  </div>
+                  <div class="quick-compare-item" onclick="quickCompareCity('Chennai')">
+                    <span class="city-name">Chennai</span>
+                    <span class="quick-temp" id="chennaiQuickTemp">--°C</span>
+                  </div>
+                </div>
+                <button class="compare-btn" onclick="openComparisonModal()">
+                  🔍 Compare Cities
+                </button>
+              </div>
+              
+              <!-- Favorite Cities -->
+              <div class="favorites-card">
+                <div class="card-header">
+                  <h3>❤️ Favorite Cities</h3>
+                </div>
+                <div id="favoriteCities" class="favorites-list">
+                  <div class="favorites-placeholder">
+                    <p>Add cities to your favorites by searching for them!</p>
+                    <button class="add-favorite-btn" onclick="showFavoriteHelper()">
+                      + Add Favorite
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- News Card -->
+              <div class="news-card-container">
+                <div id="newsResult" role="complementary" aria-label="Weather related news"></div>
+              </div>
+              
+              <!-- Advanced Weather Tips -->
+              <div class="tips-card">
+                <h3 class="tips-title">💡 Smart Weather Tips</h3>
+                <div class="tips-list">
+                  <div class="tip-item dynamic-tip" data-condition="rain">
+                    <span class="tip-icon">☔</span>
+                    <span class="tip-text">Carry umbrella when humidity > 80%</span>
+                  </div>
+                  <div class="tip-item dynamic-tip" data-condition="pollution">
+                    <span class="tip-icon">😷</span>
+                    <span class="tip-text">Wear mask when AQI > 100</span>
+                  </div>
+                  <div class="tip-item dynamic-tip" data-condition="heat">
+                    <span class="tip-icon">🌡️</span>
+                    <span class="tip-text">Stay hydrated when temp > 35°C</span>
+                  </div>
+                  <div class="tip-item dynamic-tip" data-condition="outdoor">
+                    <span class="tip-icon">🌅</span>
+                    <span class="tip-text">Best outdoor time: 6-9 AM, 5-7 PM</span>
+                  </div>
+                  <div class="tip-item dynamic-tip" data-condition="wind">
+                    <span class="tip-icon">🌬️</span>
+                    <span class="tip-text">Strong winds when speed > 15 m/s</span>
+                  </div>
+                </div>
+                
+                <!-- Share Weather Button -->
+                <div class="share-section">
+                  <button class="share-btn" onclick="shareWeatherData()" id="shareWeatherBtn" disabled>
+                    <span class="share-icon">📲</span>
+                    <span>Share Weather</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer" role="contentinfo">
+    <p>&copy; 2024 Indian Weather App | Made with ❤️ for weather enthusiasts</p>
+  </footer>
+</body>
+</html>
+
+
+public class Exception
